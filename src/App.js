@@ -1,6 +1,9 @@
 import './App.css';
+import {Routes, Route} from "react-router-dom"
 import Nav from './components/Nav/Nav.jsx';
 import Cards from './components/Cards/Cards.jsx';
+import About from "./components/About/About.jsx";
+import Detail from "./components/Detail/Detail.jsx";
 import { useState } from "react";
 import axios from "axios"; // Importa axios
 
@@ -20,11 +23,15 @@ function App() {
     const updatedCharacters = characters.filter((character) => character.id !== parseInt(idToDelete));
     setCharacters(updatedCharacters);
   };
+ 
    return (
       <div className='App'>
         <Nav onSearch={onSearch} />
-         <Cards characters={characters} onClose={onClose}/>
-         
+        <Routes >
+            <Route path="/home" element={<Cards characters={characters} onClose={onClose}/>}/>
+            <Route path="/about" element={<About/>}/>
+            <Route path="/detail/:id" element={<Detail/>}/>
+        </Routes>
       </div>
    );
 }
