@@ -1,0 +1,9 @@
+.success{
+  border: solid 2px rgb(13, 217, 13);
+  background-color: rgb(67, 118, 67);
+}
+
+.error{
+  border: solid 2px red;
+  background-color: rgb(176, 73, 73);
+}

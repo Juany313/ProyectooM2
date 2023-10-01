@@ -11,6 +11,12 @@ export default function Nav(props) {
       <Link to="/home">
       <button>Home</button>
       </Link>
+      <Link to="/">
+      <button>Login</button> {/* Form */}
+      </Link>
+      {/* <Link to="/reactRedux">
+      <button>ReactRedux</button>
+      </Link> */}
      </div>
   );
 }

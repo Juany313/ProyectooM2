@@ -10,6 +10,7 @@ export default function Card({name, status, species,gender, origin, image, onClo
          <Link to={`/detail/${idDelete}`}>
          <h4>name: {name}.</h4>
          </Link>
+         <h2>{idDelete}</h2>
          <h4>status: {status}.</h4>
          <h4>species: {species}.</h4>
          <h4>gender: {gender}.</h4>

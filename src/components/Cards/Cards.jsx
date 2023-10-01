@@ -2,12 +2,11 @@ import Card from '../Card/Card';
 import style from './Cards.module.css'
 
 export default function Cards(props) {
-  console.log(props.characters, "aca")
-   return <div className={style.cards}>
+   return (
+   <div className={style.cards}>
     {props.characters.map((personaje)=>{
-      console.log(personaje, 'personajeeeeeee')
       return <Card
-      idDelete = {personaje.id}
+      idDelete={personaje.id}
       characters={props.characters}
        onClose={props.onClose}
        name={personaje.name}
@@ -18,8 +17,9 @@ export default function Cards(props) {
        image={personaje.image}
        key={personaje.id}
        />
-    })}
-   </div>;
+       })}
+   </div>
+   )
 }
 /* <h2>name: {props.nombre}.</h2>
          <h2>status: {props.status}.</h2>
