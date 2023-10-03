@@ -5,7 +5,7 @@ import validate from './validation.js'
 
 
 
- const Form = ()=>{
+ const Form = ({login})=>{
   const [userData, setUserData] = useState({
     email: '',
     password: ''
@@ -26,13 +26,13 @@ import validate from './validation.js'
       })
     );
   }
-  const submitHandler= (event)=>{
+  const handlersubmit= (event)=>{
     event.preventDefault();
-    alert('Login exitoso')
+    login(userData);
   }
 
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={handlersubmit}>
       <div>
         <label htmlFor="email">Email</label>
         <input 

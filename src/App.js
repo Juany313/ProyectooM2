@@ -1,18 +1,35 @@
 import './App.css';
-import {Routes, Route, useLocation} from "react-router-dom";
+import {Routes, Route, useLocation, useNavigate} from "react-router-dom";
 import Form from './components/Form/Form.jsx';
 import Nav from './components/Nav/Nav.jsx';
 import Cards from './components/Cards/Cards.jsx';
-import About from "./components/About/About.jsx";
+import About from "./views/About/About.jsx";
 import Detail from "./components/Detail/Detail.jsx";
 import ReactRedux from "./components/ReactRedux/ReactRedux.jsx"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios"; // Importa axios
 
 function App() {
-  const [characters, setCharacters] = useState([]);
-
   const {pathname} = useLocation();
+  const navigate = useNavigate();
+
+  const [characters, setCharacters] = useState([]);
+  const [access, setAccess] = useState(false);
+
+  const EMAIL = "juanjaviergeringer@gmail.com";
+  const PASSWORD = "asd1234";
+
+  function login(userData) {
+    if(userData.email === EMAIL && userData.password === PASSWORD){
+      setAccess(true);
+      navigate("/home");
+    }
+  };
+
+  useEffect(()=>{
+    !access && navigate("/");
+  }, [access])
+
 
   function onSearch(id) {
     axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
@@ -30,10 +47,10 @@ function App() {
  
    return (
       <div className='App'>
-        {/* {pathname!== "/" && <Nav onSearch={onSearch} />} */}
-        <Nav onSearch={onSearch} />
+        {pathname!== "/" && <Nav onSearch={onSearch} />}
+        {/* <Nav onSearch={onSearch} /> */}
         <Routes >
-            <Route path="/" element={<Form/>}/>
+            <Route path="/" element={<Form login={login}/>}/>
             {/* <Route path="/reactRedux" element={<ReactRedux/>}/> */}
             <Route path="/home" element={<Cards characters={characters} onClose={onClose}/>}/>
             <Route path="/about" element={<About/>}/>
@@ -43,4 +60,29 @@ function App() {
    );
 }
 
+/* 
+29 MINUTOS CLASE ROUTINGGGGGGGGGGGGGGGGGGGGGGGG
+*/
+
 export default App;
+
+
+
+
+/* esto es de la clase de react-redux.
+import { createStore, applyMiddleware, compose } from "redux";
+import rootReducer from "./reducer";
+import thunk from "redux-thunk";
+
+const composeEnhancers =
+  (typeof window !== "undefined" &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+  compose;
+
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(thunk))
+);
+
+export default store;
+*/
