@@ -1,12 +1,14 @@
 import Card from '../Card/Card';
-import style from './Cards.module.css'
+import style from './Cards.module.css';
+
 
 export default function Cards(props) {
    return (
    <div className={style.cards}>
+    
     {props.characters.map((personaje)=>{
       return <Card
-      idDelete={personaje.id}
+      id={personaje.id}
       characters={props.characters}
        onClose={props.onClose}
        name={personaje.name}
@@ -20,10 +22,5 @@ export default function Cards(props) {
        })}
    </div>
    )
-}
-/* <h2>name: {props.nombre}.</h2>
-         <h2>status: {props.status}.</h2>
-         <h2>species: {props.especie}.</h2>
-         <h2>gender: {props.género}.</h2>
-         <h2>origin:{props.origin}</h2>
-         <img src={props.image} alt='' /> */
+};
+

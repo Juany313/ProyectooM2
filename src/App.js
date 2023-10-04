@@ -8,6 +8,7 @@ import Detail from "./components/Detail/Detail.jsx";
 import ReactRedux from "./components/ReactRedux/ReactRedux.jsx"
 import { useEffect, useState } from "react";
 import axios from "axios"; // Importa axios
+import Favorites from './components/Favorites/Favorites';
 
 function App() {
   const {pathname} = useLocation();
@@ -54,6 +55,7 @@ function App() {
             {/* <Route path="/reactRedux" element={<ReactRedux/>}/> */}
             <Route path="/home" element={<Cards characters={characters} onClose={onClose}/>}/>
             <Route path="/about" element={<About/>}/>
+            <Route path="/favorites" element={<Favorites/>}/>
             <Route path="/detail/:id" element={<Detail/>}/>
         </Routes>
       </div>
@@ -69,20 +71,4 @@ export default App;
 
 
 
-/* esto es de la clase de react-redux.
-import { createStore, applyMiddleware, compose } from "redux";
-import rootReducer from "./reducer";
-import thunk from "redux-thunk";
 
-const composeEnhancers =
-  (typeof window !== "undefined" &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
-  compose;
-
-const store = createStore(
-  rootReducer,
-  composeEnhancers(applyMiddleware(thunk))
-);
-
-export default store;
-*/

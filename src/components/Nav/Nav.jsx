@@ -1,6 +1,7 @@
 import SearchBar from "../SearchBar/SearchBar";
 import {Link} from "react-router-dom"
 
+/* se pueden hacer la mejora de deshabilitar el boton si hay errors, mirar a partir de 1:10 clase de Sabri */
 export default function Nav(props) {
   return (
      <div>
@@ -11,10 +12,10 @@ export default function Nav(props) {
       <Link to="/home">
       <button>Home</button>
       </Link>
+      <Link to="/favorites">
+      <button>Favorites</button>
+      </Link>
       
-      {/* <Link to="/reactRedux">
-      <button>ReactRedux</button>
-      </Link> */}
      </div>
   );
 }
