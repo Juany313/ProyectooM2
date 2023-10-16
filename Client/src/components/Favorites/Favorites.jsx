@@ -1,28 +1,66 @@
-import { connect } from "react-redux";
-import Card from "../Card/Card";
-import style from "./Favorites.module.css"
+import { connect, useDispatch } from "react-redux";
+import Cards from "../Cards/Cards";
+import style from "./Favorites.module.css";
+import { orderCards, filterCards} from "../../redux/actions"
+import { useState } from "react";
 
 
 const Favorites = (props)=> {
 
+  const [aux, setAux] = useState(false);
   const{myFavorites} = props;
+  const dispatch = useDispatch()
+
+  const handleOrder= (e)=>{
+    dispatch(
+      orderCards(e.target.value),
+      setAux(!aux)
+    )
+  }
+  const handleFilter= (e)=>{
+    dispatch(
+      filterCards(e.target.value)
+    )
+  }
 
   return (
     <div className={style.cards}>
-      {myFavorites.map((personaje)=>{
-      return <Card
-      id={personaje.id}
-      characters={props.characters}
-       onClose={props.onClose}
-       name={personaje.name}
-       status={personaje.status}
-       species={personaje.species}
-       gender={personaje.gender}
-       origin={personaje.origin.name}
-       image={personaje.image}
-       key={personaje.id}
-       />
-       })}
+     
+        <div>
+          <select>
+            <option 
+              value="A" 
+              onChange={handleOrder}
+              >Ascendente
+            </option>
+            <option 
+              value="D"
+              onChange={handleOrder}
+              >Descendente
+            </option>
+          </select>
+          <select onChange={handleFilter}>
+            <option 
+              value="Male"
+              >Male
+            </option>
+            <option 
+              value="Female"
+              >Female
+            </option>
+            <option 
+              value="Genderless"
+              >Genderless
+            </option>
+            <option 
+              value="unknown"
+              >unknown
+            </option>
+          </select>
+        </div>
+        <Cards characters={myFavorites}/>
+      
+      
     </div>
   )
 };

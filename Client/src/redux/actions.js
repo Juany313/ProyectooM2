@@ -11,6 +11,18 @@ export const removeFav = (id)=>{
   }
 };
 
+export const filterCards = (gender)=>{
+  return {
+    type: "FILTER",
+    payload: gender
+  }
+};
+export const orderCards = (orden)=>{
+  return {
+    type: "ORDER",
+    payload: orden
+  }
+};
 /* Construye dos actions-creators:
 
 addFav: esta función recibe un personaje por parámetro. Deberás retornar una action con el type igual a "ADD_FAV", y el payload igual a ese personaje.

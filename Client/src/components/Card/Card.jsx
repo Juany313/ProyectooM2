@@ -33,6 +33,7 @@ function Card(props) {
               <button onClick={handleFavorite}>🤍</button>
           )
         }
+        
          <button onClick={() => onClose(id)}>X</button>
          <Link to={`/detail/${id}`}>
          <h4>name: {name}.</h4>
@@ -68,3 +69,4 @@ const mapStateToProps = (state)=> {
 export default connect(mapStateToProps,mapDispatchToProps)(Card);
 
 //si no necesito traer nada, el primer parámetro del conect es null.
+
