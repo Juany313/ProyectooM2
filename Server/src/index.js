@@ -1,22 +1,29 @@
-const http= require("http");
-const getCharById = require("../controllers/getCharById")
+const express = require("express");
+const server = express();
+const PORT = 3001;
+const router = require("../routes/index")
+//libreria Dotenv -> sirve para guardar nuestras variabkes de entorno con info sencible
+//.env
+const morgan = require("morgan");
 
+server.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header(
+     'Access-Control-Allow-Headers',
+     'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  res.header(
+     'Access-Control-Allow-Methods',
+     'GET, POST, OPTIONS, PUT, DELETE'
+  );
+  next();
+});
 
+server.use(express.json());
 
-http.createServer((req,res)=>{
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  const {url} = req;
-  const arrUrl = url.split("/");
-  const idPersonaje = Number(arrUrl.reverse()[0]);
+server.use("/rickandmorty", router);
 
-
-  if(url.includes("/rickandmorty/character")){
-  
-    getCharById(res,idPersonaje)
-    
-    return;
-  }
-
-  res.writeHead(400);
-  res.end();
-}).listen(3001, "localhost");
+server.listen(PORT, () => {
+   console.log('Server raised in port: ' + PORT);
+});
