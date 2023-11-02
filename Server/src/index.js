@@ -1,8 +1,11 @@
+/* server config */
 const express = require("express");
 const server = express();
 const PORT = 3001;
+
+/* routes */
 const router = require("../routes/index")
-//libreria Dotenv -> sirve para guardar nuestras variabkes de entorno con info sencible
+//libreria Dotenv -> sirve para guardar nuestras variables de entorno con info sencible
 //.env
 const morgan = require("morgan");
 

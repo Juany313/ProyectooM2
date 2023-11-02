@@ -8,14 +8,10 @@ export default function Cards(props) {
     
     {props.characters.map((personaje)=>{
       return <Card
-      id={personaje.id}
       characters={props.characters}
+      id={personaje.id}
        onClose={props.onClose}
        name={personaje.name}
-       status={personaje.status}
-       species={personaje.species}
-       gender={personaje.gender}
-       origin={personaje.origin.name}
        image={personaje.image}
        key={personaje.id}
        />

@@ -1,27 +1,39 @@
-import React, { useState, useEffect } from "react";
+/* style */
 import style from './Card.module.css';
-import {Link} from "react-router-dom";
+
+/* hooks */
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {Link, useLocation} from "react-router-dom";
+
+/* actions */
 import {addFav, removeFav} from "../../redux/actions";
-import { connect } from 'react-redux';
 
-function Card(props) {
-
-  const {name, status, species,gender, origin, image, onClose,id, addFav, removeFav, myFavorites} = props;
-
+function Card({id,name,image, onClose}) {
+  const dispatch = useDispatch();
+  const myFavorites = useSelector((state) => state.myFavorites);
+  const {pathname} = useLocation();
   const [isFav, setIsFav] = useState(false);
-
+  
+  const handleFavorite = ()=> {
+    if(isFav){
+      setIsFav(false)
+      dispatch(removeFav(id))
+    } else {
+      setIsFav(true)
+      dispatch(addFav({id,name,image,  onClose}))
+    }
+    /* isFav? removeFav(id) : addFav(props);
+    setIsFav(!isFav) */
+  }
   useEffect(() => {
     myFavorites.forEach((fav) => {
-       if (fav.id === props.id) {
+       if (fav.id === id) {
           setIsFav(true);
        }
     });
  }, [myFavorites]);
 
-  const handleFavorite = ()=> {
-    isFav? removeFav(id) : addFav(props);
-    setIsFav(!isFav)
-  }
 
   return (
     
@@ -33,23 +45,29 @@ function Card(props) {
               <button onClick={handleFavorite}>🤍</button>
           )
         }
+        {
+          pathname !== '/favorites' ? 
+          <button onClick={() => onClose(id)}>X</button> 
+          : ''
+        }
         
-         <button onClick={() => onClose(id)}>X</button>
          <Link to={`/detail/${id}`}>
          <h4>name: {name}.</h4>
          </Link>
          <h2>{id}</h2>
-         <h4>status: {status}.</h4>
-         <h4>species: {species}.</h4>
-         <h4>gender: {gender}.</h4>
-         <h4>origin:{origin}</h4>
          <img src={image} alt='' />
       </div>
     
    );
 };
 
-const mapDispatchToProps = (dispatch) => {
+
+
+
+
+export default Card;
+
+/* const mapDispatchToProps = (dispatch) => {
   return {
     addFav: (personaje)=> {
       dispatch(addFav(personaje))
@@ -66,7 +84,7 @@ const mapStateToProps = (state)=> {
   }
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(Card);
+export default connect(mapStateToProps,mapDispatchToProps)(Card); */
 
 //si no necesito traer nada, el primer parámetro del conect es null.
 

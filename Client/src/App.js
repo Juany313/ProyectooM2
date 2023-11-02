@@ -1,14 +1,25 @@
+/* style */
 import './App.css';
-import {Routes, Route, useLocation, useNavigate} from "react-router-dom";
+
+/* components to render */
 import Form from './components/Form/Form.jsx';
 import Nav from './components/Nav/Nav.jsx';
 import Cards from './components/Cards/Cards.jsx';
 import About from "./views/About/About.jsx";
 import Detail from "./components/Detail/Detail.jsx";
+import Favorites from './components/Favorites/Favorites';
+
+/* hooks */
+import {Routes, Route, useLocation, useNavigate} from "react-router-dom";
 import ReactRedux from "./components/ReactRedux/ReactRedux.jsx"
 import { useEffect, useState } from "react";
+
+/* dependencies */
 import axios from "axios"; // Importa axios
-import Favorites from './components/Favorites/Favorites';
+
+/* credentials */
+const EMAIL = "juanjaviergeringer@gmail.com";
+const PASSWORD = "asd1234";
 
 function App() {
   const {pathname} = useLocation();
@@ -17,8 +28,6 @@ function App() {
   const [characters, setCharacters] = useState([]);
   const [access, setAccess] = useState(false);
 
-  const EMAIL = "juanjaviergeringer@gmail.com";
-  const PASSWORD = "asd1234";
 
 /*   function login(userData) {
     if(userData.email === EMAIL && userData.password === PASSWORD){
@@ -45,15 +54,25 @@ function App() {
   function onSearch(id) {
     axios(`http://localhost:3001/rickandmorty/character/${id}`).then(({ data }) => {
        if (data.name) {
+        console.log("ACA LA DATAAAAA");
+        console.log(data);
+        console.log("ACA LA DATAAAAA");
           setCharacters((oldChars) => [...oldChars, data]);
+
        } else {
           window.alert('¡No hay personajes con este ID!');
        }
     });
   }
-  const onClose = (idToDelete) => {
-    const updatedCharacters = characters.filter((character) => character.id !== parseInt(idToDelete));
-    setCharacters(updatedCharacters);
+  const onClose = (id) => {
+    setCharacters(
+      characters.filter((char) => {
+        let idd = char.id;
+        console.log(`este es el id que llega: ${id}`);
+        console.log(`este es el del personaje: ${idd}`);
+        return char.id !== Number(id);
+      })
+    )
   };
  
    return (

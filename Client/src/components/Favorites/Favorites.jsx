@@ -1,14 +1,14 @@
-import { connect, useDispatch } from "react-redux";
-import Cards from "../Cards/Cards";
+import { useSelector, useDispatch } from "react-redux";
+import Card from "../Card/Card";
 import style from "./Favorites.module.css";
 import { orderCards, filterCards} from "../../redux/actions"
 import { useState } from "react";
 
 
-const Favorites = (props)=> {
-
-  const [aux, setAux] = useState(false);
-  const{myFavorites} = props;
+const Favorites = ()=> {
+  const {myFavorites} = useSelector((state)=>state);
+  /* const [aux, setAux] = useState(false);
+  //const{myFavorites} = props;
   const dispatch = useDispatch()
 
   const handleOrder= (e)=>{
@@ -21,12 +21,35 @@ const Favorites = (props)=> {
     dispatch(
       filterCards(e.target.value)
     )
-  }
+  } */
 
   return (
-    <div className={style.cards}>
+    <div >
      
+
         <div>
+          {myFavorites?.map((favorite) => {
+            return(
+              <Card 
+                key= {favorite.id}
+                id= {favorite.id}
+                name= {favorite.name}
+                image= {favorite.image}
+
+              />
+
+            )
+          })}
+        </div>
+      
+      
+    </div>
+  )
+};
+
+export default Favorites;
+
+/*         <div>
           <select>
             <option 
               value="A" 
@@ -57,18 +80,5 @@ const Favorites = (props)=> {
               >unknown
             </option>
           </select>
-        </div>
-        <Cards characters={myFavorites}/>
-      
-      
-    </div>
-  )
-};
+        </div> */
 
-const mapStateToProps = (state)=> {
-  return {
-    myFavorites: state.myFavorites,
-  }
-};
-
-export default connect(mapStateToProps,null)(Favorites);
