@@ -1,15 +1,15 @@
 import axios from "axios";
 import { ADD_FAV, REMOVE_FAV } from "./actions-types";
 
-/* export const addFav = (personaje)=>{
+export const addFav = (personaje)=>{
   return {
-    type: "ADD_FAV",
+    type: ADD_FAV,
     payload: personaje
   }
-} */
+}
 
 // ACTION | addFav
-export const addFav = (character) => {
+/* export const addFav = (character) => {
    const endpoint = 'http://localhost:3001/rickandmorty/fav';
    return (dispatch) => {
       axios.post(endpoint, character).then(({ data }) => {
@@ -19,16 +19,16 @@ export const addFav = (character) => {
          });
       });
    };
-};
-/* export const removeFav = (id)=>{
+}; */
+export const removeFav = (id)=>{
   return {
-    type: "REMOVE_FAV",
+    type: REMOVE_FAV,
     payload: id
   }
-}; */
+};
 
 // ACTION | removeFav
-export const removeFav = (id) => {
+/* export const removeFav = (id) => {
   const endpoint = 'http://localhost:3001/rickandmorty/fav/' + id;
   return (dispatch) => {
      axios.delete(endpoint).then(({ data }) => {
@@ -38,7 +38,7 @@ export const removeFav = (id) => {
      });
      });
   };
-};
+}; */
 
 export const filterCards = (gender)=>{
   return {
