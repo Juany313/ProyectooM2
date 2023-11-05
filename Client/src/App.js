@@ -56,9 +56,9 @@ function App() {
  }
 
 
-  useEffect(()=>{
+/*   useEffect(()=>{
     !access && navigate("/");
-  }, [access])
+  }, [access]) */
 
 // !PROMESAS
  /*  function onSearch(id) {

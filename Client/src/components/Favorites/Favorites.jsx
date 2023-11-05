@@ -24,10 +24,8 @@ const Favorites = ()=> {
   } */
 
   return (
-    <div >
-     
+    <div className={style.cards}>
 
-        <div>
           {myFavorites?.map((favorite) => {
             return(
               <Card 
@@ -40,9 +38,6 @@ const Favorites = ()=> {
 
             )
           })}
-        </div>
-      
-      
     </div>
   )
 };

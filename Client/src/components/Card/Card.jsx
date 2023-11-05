@@ -37,25 +37,29 @@ function Card({id,name,image, onClose}) {
 
   return (
     
-      <div className={style.card}>
+      <div className={style.container}>
+        <div className={style.buttonContainer}>
         {
           isFav ? (
-              <button onClick={handleFavorite}>❤️</button>
+              <button className={style.buttonFav} onClick={handleFavorite}>❤️</button>
           ) : (
-              <button onClick={handleFavorite}>🤍</button>
+              <button className={style.buttonFav} onClick={handleFavorite}>🖤</button>
           )
         }
         {
           pathname !== '/favorites' ? 
-          <button onClick={() => onClose(id)}>X</button> 
+          <button className={style.button} onClick={() => onClose(id)}>X</button> 
           : ''
         }
-        
-         <Link to={`/detail/${id}`}>
-         <h4>name: {name}.</h4>
-         </Link>
-         <h2>{id}</h2>
+        </div>
+
+        <div className={style.imageContainer}>
          <img src={image} alt='' />
+         <Link  to={`/detail/${id}`}>
+         <h2 className={style.name} >{name}</h2>
+         </Link>
+        </div>
+
       </div>
     
    );
