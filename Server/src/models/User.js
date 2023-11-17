@@ -15,6 +15,10 @@ module.exports = (sequelize) => {
                isEmail: true,
                unique: true,
         },
+      password:{
+         type: DataTypes.STRING,
+               allowNull: false,
+      }
    }, { timestamps: false });
 };
 

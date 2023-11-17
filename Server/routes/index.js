@@ -3,7 +3,9 @@ const express = require("express");
 const router = express.Router();
 
 /* controllers */
+const login = require("../controllers/login")
 const postUser= require("../controllers/postUser");
+const postFav= require("../controllers/postFav");
 const {getCharById} = require("../controllers/getCharById");
 
 
@@ -13,7 +15,9 @@ const {getCharById} = require("../controllers/getCharById");
 /* routes */
 
 router.get("/character/:id", getCharById);
-router.post("/login", postUser)
+router.get("/login", login);
+router.post("/login", postUser);
+router.post("/fav", postFav);
 
 
 
