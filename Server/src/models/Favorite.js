@@ -13,7 +13,10 @@ module.exports = (sequelize) => {
          unique: true,
          allowNull: false
      },
-     gender: {
+     image: {
+        type: DataTypes.STRING,
+     }
+    /*  gender: {
          type: DataTypes.STRING
      },
      status: {
@@ -25,7 +28,7 @@ module.exports = (sequelize) => {
      },
      species: {
          type: DataTypes.STRING
-     },
+     }, */
  
  },
  {

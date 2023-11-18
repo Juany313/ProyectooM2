@@ -1,17 +1,17 @@
-const { all } = require("axios");
+
 const{ Favorite } = require("../src/DB_connection");
 
 const postFav = async (req,res)=>{
 
-    const {id,name,origin,status,image,species,gender} = req.body;
+    const {id,name,image,} = req.body;
 
     try {
-        if(!id || !name || !origin || !status || !image || !species || !gender){
+        if(!id || !name || !image ){
             return res.status(401).json({error: "Faltan datos"})
         }
 
         const[charFav, created] = await Favorite.findOrCreate({
-            where: {id,name,origin,status,image,species,gender}
+            where: {id,name,image}
         })
 
         if(!created){

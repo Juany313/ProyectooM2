@@ -6,22 +6,20 @@ const postUser = async (req, res)=>{
     try {
         if(!email || ! password){ return res.status(400).send({message: "faltan datos"});}
         const [user, created] = await User.findOrCreate({
-            where: {
-                email: email,
-               
+            where: {email},
+            defaults: {
+                password
             }
         });
 
     if (created) {
-        console.log("User created:", user);
-        return res.send("Usuario creado correctamente");
+        return res.status(200).json(user)
     } else {
-        console.log("User already exists:", user);
-        return res.send("El usuario ya existe");
+        return res.status(409).json({error: "El email ya està registrado"})
     }
         
     } catch (error) {
-        res.send(error.message)
+        res.status(500).json({error: error.message})
     }
 };
 
